@@ -8,8 +8,8 @@ window.SITE = {
   about:
     "I design and edit visual content for brands and creators. From logos and social creatives to short-form video and motion graphics, I turn ideas into work that gets noticed.",
   tools: ["Photoshop", "CorelDRAW", "Premiere Pro", "After Effects"],
-  email: "you@example.com",          // <- your email
-  instagram: "https://instagram.com/your_handle", // <- your own page (optional, "" to hide)
+  email: "anujgambhir07@gmail.com",          // <- your email
+  instagram: "", // your own Instagram link (leave "" to hide)
 
   // Put files in assets/images/ and list them here (10 items)
   images: [
@@ -42,7 +42,7 @@ window.SITE = {
 
   // Past clients' Instagram pages
   clients: [
-    { name: "Client One", handle: "@client_one", url: "https://instagram.com/client_one", note: "What you did for them, e.g. posts, reels, branding" },
-    { name: "Client Two", handle: "@client_two", url: "https://instagram.com/client_two", note: "What you did for them, e.g. posts, reels, branding" }
+    { name: "Ambitio Club", handle: "@ambitio.club", url: "https://www.instagram.com/ambitio.club/", note: "Social media creatives, posters and reels" },
+    { name: "Engifest DTU", handle: "@engifest_dtu", url: "https://www.instagram.com/engifest_dtu/", note: "Event creatives, promo videos and motion graphics" }
   ]
 };
