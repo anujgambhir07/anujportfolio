@@ -4,40 +4,35 @@
 window.SITE = {
   name: "Anuj Gambhir",
   role: "Graphic Designer & Video Editor",
-  tagline: "Brands, posters and reels that stop the scroll.",
+  tagline: "Explore the creative universe",
+  hint: "Move your cursor to rotate · Click any tile to open",
   about:
-    "I design and edit visual content for brands and creators. From logos and social creatives to short-form video and motion graphics, I turn ideas into work that gets noticed.",
+    "I design and edit visual content for brands and creators. From posters and social creatives to short-form video and motion graphics, I turn ideas into work that gets noticed.",
   tools: ["Photoshop", "CorelDRAW", "Premiere Pro", "After Effects"],
-  email: "anujgambhir07@gmail.com",          // <- your email
+  email: "anujgambhir07@gmail.com",
   instagram: "", // your own Instagram link (leave "" to hide)
 
-  // Files live in assets/images/ (.mp4 files there show as looping motion tiles)
-  images: [
-    { src: "assets/images/i1.webp", title: "DTU but Minecraft", tool: "Reel cover" },
-    { src: "assets/images/i2.webp", title: "DTU Library, in Minecraft", tool: "Reel frame" },
-    { src: "assets/images/i3.webp", title: "Study Desk, in Minecraft", tool: "Reel frame" },
-    { src: "assets/images/i4.webp", title: "Faculty Block, in Minecraft", tool: "Reel frame" },
-    { src: "assets/images/i5.jpg", title: "R3PRSNT Passport", tool: "Concept design" },
-    { src: "assets/images/i6.png", title: "R3PRESENT at Aarambh", tool: "Event story" },
-    { src: "assets/images/i7.jpg", title: "Stars Align", tool: "Cover art" },
-    { src: "assets/images/i8.png", title: "R3PRSNT Orientation", tool: "Poster" },
-    { src: "assets/images/i9.mp4", title: "Motion piece 01", tool: "Motion" },
-    { src: "assets/images/i10.mp4", title: "Motion piece 02", tool: "Motion" }
-  ],
-
-  // Each video: either a local file (src) OR a YouTube id (youtube). poster is optional. 'tool' is just the small label under the title.
-  videos: [
-    { src: "assets/videos/v1.mp4", title: "Reel 01", tool: "Video edit" },
-    { src: "assets/videos/v2.mp4", title: "Reel 02", tool: "Video edit" },
-    { src: "assets/videos/v3.mp4", title: "Reel 03", tool: "Video edit" },
-    { src: "assets/videos/v4.mp4", title: "Reel 04", tool: "Video edit" },
-    { src: "assets/videos/v5.mp4", title: "Reel 05", tool: "Video edit" },
-    { src: "assets/videos/v6.mp4", title: "Reel 06", tool: "Video edit" },
-    { src: "assets/videos/v7.mp4", title: "Reel 07", tool: "Video edit" },
-    { src: "assets/videos/v8.mp4", title: "Reel 08", tool: "Video edit" },
-    { src: "assets/videos/v9.mp4", title: "Reel 09", tool: "Video edit" },
-    { src: "assets/videos/v10.mp4", title: "Reel 10", tool: "Video edit" }
-    // YouTube example: { youtube: "dQw4w9WgXcQ", title: "Reel", tool: "Premiere Pro" }
+  // Each entry is ONE post. "items" with more than one file becomes a slide-through post.
+  // Files ending in .mp4 play as video. tag = Post | Motion | Reel (used for the filter chips).
+  work: [
+    { title: "DTU but Minecraft", tag: "Post", items: [
+      "assets/images/i1.webp", "assets/images/i2.webp", "assets/images/i3.webp", "assets/images/i4.webp"
+    ] },
+    { title: "R3PRSNT DTU", tag: "Post", items: [
+      "assets/images/i5.jpg", "assets/images/i6.png", "assets/images/i8.png"
+    ] },
+    { title: "Stars Align", tag: "Post", items: ["assets/images/i7.jpg"] },
+    { title: "Motion 01", tag: "Motion", items: ["assets/images/i9.mp4"] },
+    { title: "Motion 02", tag: "Motion", items: ["assets/images/i10.mp4"] },
+    { title: "Reel 01", tag: "Reel", items: ["assets/videos/v1.mp4"] },
+    { title: "Reel 02", tag: "Reel", items: ["assets/videos/v2.mp4"] },
+    { title: "Reel 03", tag: "Reel", items: ["assets/videos/v3.mp4"] },
+    { title: "Reel 04", tag: "Reel", items: ["assets/videos/v4.mp4"] },
+    { title: "Reel 05", tag: "Reel", items: ["assets/videos/v5.mp4"] },
+    { title: "Reel 06", tag: "Reel", items: ["assets/videos/v6.mp4"] },
+    { title: "Reel 07", tag: "Reel", items: ["assets/videos/v7.mp4"] },
+    { title: "Reel 08", tag: "Reel", items: ["assets/videos/v8.mp4"] },
+    { title: "Reel 09", tag: "Reel", items: ["assets/videos/v9.mp4"] }
   ],
 
   // Past clients' Instagram pages
