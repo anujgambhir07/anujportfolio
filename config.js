@@ -11,32 +11,32 @@ window.SITE = {
   email: "anujgambhir07@gmail.com",          // <- your email
   instagram: "", // your own Instagram link (leave "" to hide)
 
-  // Put files in assets/images/ and list them here (10 items)
+  // Files live in assets/images/ (.mp4 files there show as looping motion tiles)
   images: [
-    { src: "assets/images/01.jpg", title: "Project title", tool: "Photoshop" },
-    { src: "assets/images/02.jpg", title: "Project title", tool: "CorelDRAW" },
-    { src: "assets/images/03.jpg", title: "Project title", tool: "Photoshop" },
-    { src: "assets/images/04.jpg", title: "Project title", tool: "Photoshop" },
-    { src: "assets/images/05.jpg", title: "Project title", tool: "CorelDRAW" },
-    { src: "assets/images/06.jpg", title: "Project title", tool: "Photoshop" },
-    { src: "assets/images/07.jpg", title: "Project title", tool: "Photoshop" },
-    { src: "assets/images/08.jpg", title: "Project title", tool: "CorelDRAW" },
-    { src: "assets/images/09.jpg", title: "Project title", tool: "Photoshop" },
-    { src: "assets/images/10.jpg", title: "Project title", tool: "Photoshop" }
+    { src: "assets/images/i1.webp", title: "DTU but Minecraft", tool: "Reel cover" },
+    { src: "assets/images/i2.webp", title: "DTU Library, in Minecraft", tool: "Reel frame" },
+    { src: "assets/images/i3.webp", title: "Study Desk, in Minecraft", tool: "Reel frame" },
+    { src: "assets/images/i4.webp", title: "Faculty Block, in Minecraft", tool: "Reel frame" },
+    { src: "assets/images/i5.jpg", title: "R3PRSNT Passport", tool: "Concept design" },
+    { src: "assets/images/i6.png", title: "R3PRESENT at Aarambh", tool: "Event story" },
+    { src: "assets/images/i7.jpg", title: "Stars Align", tool: "Cover art" },
+    { src: "assets/images/i8.png", title: "R3PRSNT Orientation", tool: "Poster" },
+    { src: "assets/images/i9.mp4", title: "Motion piece 01", tool: "Motion" },
+    { src: "assets/images/i10.mp4", title: "Motion piece 02", tool: "Motion" }
   ],
 
-  // Each video: either a local file (src) OR a YouTube id (youtube). poster is optional.
+  // Each video: either a local file (src) OR a YouTube id (youtube). poster is optional. 'tool' is just the small label under the title.
   videos: [
-    { src: "assets/videos/01.mp4", poster: "", title: "Video title", tool: "Premiere Pro" },
-    { src: "assets/videos/02.mp4", poster: "", title: "Video title", tool: "After Effects" },
-    { src: "assets/videos/03.mp4", poster: "", title: "Video title", tool: "Premiere Pro" },
-    { src: "assets/videos/04.mp4", poster: "", title: "Video title", tool: "After Effects" },
-    { src: "assets/videos/05.mp4", poster: "", title: "Video title", tool: "Premiere Pro" },
-    { src: "assets/videos/06.mp4", poster: "", title: "Video title", tool: "Premiere Pro" },
-    { src: "assets/videos/07.mp4", poster: "", title: "Video title", tool: "After Effects" },
-    { src: "assets/videos/08.mp4", poster: "", title: "Video title", tool: "Premiere Pro" },
-    { src: "assets/videos/09.mp4", poster: "", title: "Video title", tool: "Premiere Pro" },
-    { src: "assets/videos/10.mp4", poster: "", title: "Video title", tool: "After Effects" }
+    { src: "assets/videos/v1.mp4", title: "Reel 01", tool: "Video edit" },
+    { src: "assets/videos/v2.mp4", title: "Reel 02", tool: "Video edit" },
+    { src: "assets/videos/v3.mp4", title: "Reel 03", tool: "Video edit" },
+    { src: "assets/videos/v4.mp4", title: "Reel 04", tool: "Video edit" },
+    { src: "assets/videos/v5.mp4", title: "Reel 05", tool: "Video edit" },
+    { src: "assets/videos/v6.mp4", title: "Reel 06", tool: "Video edit" },
+    { src: "assets/videos/v7.mp4", title: "Reel 07", tool: "Video edit" },
+    { src: "assets/videos/v8.mp4", title: "Reel 08", tool: "Video edit" },
+    { src: "assets/videos/v9.mp4", title: "Reel 09", tool: "Video edit" },
+    { src: "assets/videos/v10.mp4", title: "Reel 10", tool: "Video edit" }
     // YouTube example: { youtube: "dQw4w9WgXcQ", title: "Reel", tool: "Premiere Pro" }
   ],
 

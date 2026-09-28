@@ -2,7 +2,7 @@
 
 Static one-page portfolio. No build step.
 
-1. Drop 10 images in `assets/images/` (01.jpg … 10.jpg) and 10 videos in `assets/videos/` (01.mp4 … 10.mp4).
+1. Media lives in `assets/images/` (i1–i10) and `assets/videos/` (v1–v10).
 2. Edit `config.js` (name, email, titles, client Instagram links).
 3. Deploy on Vercel: Import this repo, Framework Preset = **Other**, leave build settings empty.
 

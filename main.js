@@ -18,11 +18,20 @@
   // Images (missing file -> neutral placeholder)
   const lb = $("lightbox"), lbImg = lb.querySelector("img");
   S.images.forEach((i) => {
-    const f = el("figure", "card", ""); const img = new Image();
-    img.loading = "lazy"; img.alt = i.title; img.src = i.src;
-    img.onerror = () => f.classList.add("missing");
-    f.append(img); f.insertAdjacentHTML("beforeend", caption(i));
-    f.onclick = () => { if (f.classList.contains("missing")) return; lbImg.src = i.src; lb.hidden = false; };
+    const f = el("figure", "card", "");
+    if (/\.mp4$/i.test(i.src)) {
+      const v = document.createElement("video");
+      v.src = i.src; v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.preload = "metadata";
+      v.onerror = () => f.classList.add("missing");
+      f.append(v);
+    } else {
+      const img = new Image();
+      img.loading = "lazy"; img.alt = i.title; img.src = i.src;
+      img.onerror = () => f.classList.add("missing");
+      f.append(img);
+      f.onclick = () => { if (f.classList.contains("missing")) return; lbImg.src = i.src; lb.hidden = false; };
+    }
+    f.insertAdjacentHTML("beforeend", caption(i));
     $("imageGrid").append(f);
   });
   lb.onclick = () => (lb.hidden = true);
