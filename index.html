@@ -5,67 +5,96 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portfolio</title>
 <meta name="description" content="Graphic design and video editing portfolio.">
-<meta name="theme-color" content="#05070d">
+<meta name="theme-color" content="#0c0c0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top">
-  <a href="#top" class="logo" id="navName"></a>
+<div class="progress" id="progress"></div>
+
+<header class="top" id="top">
+  <a href="#hero" class="logo" id="navName"></a>
   <nav>
     <a href="#work">Work</a>
+    <a href="#about">About</a>
     <a href="#clients">Clients</a>
-    <a href="#contact" class="pill">Hire me</a>
+    <a href="#contact" class="btn btn-line">Contact</a>
   </nav>
 </header>
 
-<main id="top">
+<main>
   <section class="hero" id="hero">
-    <canvas id="netBack" aria-hidden="true"></canvas>
-    <div class="scene" id="scene"><div class="sphere" id="sphere"></div></div>
-    <canvas id="netFront" aria-hidden="true"></canvas>
-    <div class="hero-foot">
-      <p class="eyebrow" id="role"></p>
+    <div class="hero-text" id="heroText">
+      <p class="label" id="role"></p>
       <h1 id="tagline"></h1>
-      <p id="hint"></p>
-      <a class="down" href="#work" aria-label="Scroll to work">↓</a>
+      <p class="lede" id="lede"></p>
+      <div class="actions">
+        <a href="#work" class="btn btn-solid">View work</a>
+        <a href="#contact" class="btn btn-line">Get in touch</a>
+      </div>
+    </div>
+    <div class="visual" id="visual">
+      <div class="scene"><div class="sphere" id="sphere"></div></div>
+      <p class="hint" id="hint"></p>
     </div>
   </section>
 
-  <section id="work">
-    <div class="head">
-      <h2>All work</h2>
-      <div class="chips" id="chips"></div>
+  <section id="work" class="block">
+    <div class="block-head" data-reveal>
+      <span class="num">01</span>
+      <h2>Selected work</h2>
+      <div class="tabs" id="chips" role="tablist"></div>
     </div>
     <div class="grid" id="grid"></div>
   </section>
 
-  <section class="about" id="about">
-    <p id="about-text"></p>
-    <ul class="tools" id="tools"></ul>
+  <section id="about" class="block about">
+    <div class="block-head" data-reveal>
+      <span class="num">02</span>
+      <h2>About</h2>
+    </div>
+    <div class="about-body">
+      <p class="statement" id="about-text" data-reveal></p>
+      <div data-reveal>
+        <p class="label">Tools</p>
+        <ul class="tools" id="tools"></ul>
+      </div>
+    </div>
   </section>
 
-  <section id="clients">
-    <h2>Worked with</h2>
+  <section id="clients" class="block">
+    <div class="block-head" data-reveal>
+      <span class="num">03</span>
+      <h2>Clients</h2>
+    </div>
     <div class="clients" id="clientGrid"></div>
   </section>
 
-  <section id="contact" class="contact">
-    <h2>Let’s work together</h2>
-    <a class="big" id="mail"></a>
+  <section id="contact" class="block contact">
+    <div class="block-head" data-reveal>
+      <span class="num">04</span>
+      <h2>Contact</h2>
+    </div>
+    <p class="contact-lead" data-reveal>Have a project in mind? Let’s talk.</p>
+    <a class="big" id="mail" data-reveal></a>
     <a class="ig" id="ig" target="_blank" rel="noopener"></a>
   </section>
 </main>
 
-<footer><span id="year"></span> <span id="foot"></span></footer>
+<footer><span id="year"></span><span id="foot"></span></footer>
 
 <div class="viewer" id="viewer" hidden role="dialog" aria-modal="true">
-  <button class="vx" id="vClose" aria-label="Close">×</button>
-  <button class="vnav prev" id="vPrev" aria-label="Previous">‹</button>
+  <button class="vx" id="vClose" aria-label="Close">Close ✕</button>
+  <button class="vnav prev" id="vPrev" aria-label="Previous">←</button>
   <div class="stage" id="stage"></div>
-  <button class="vnav next" id="vNext" aria-label="Next">›</button>
-  <div class="vcap"><b id="vTitle"></b><span id="vCount"></span><p id="vDesc"></p><div class="dots" id="vDots"></div></div>
+  <button class="vnav next" id="vNext" aria-label="Next">→</button>
+  <div class="vcap">
+    <div class="vmeta"><span id="vTag" class="label"></span><span id="vCount"></span></div>
+    <b id="vTitle"></b>
+    <p id="vDesc"></p>
+  </div>
 </div>
 
 <script src="config.js"></script>
