@@ -11,9 +11,7 @@
   document.title = S.name + " — " + S.role;
   $("navName").textContent = S.name;
   $("role").textContent = S.role;
-  $("name").textContent = S.name;
   $("tagline").textContent = S.tagline;
-  $("hint").textContent = S.hint;
   $("about-text").textContent = S.about;
   $("tools").innerHTML = S.tools.map((t) => "<li>" + esc(t) + "</li>").join("");
   $("mail").textContent = S.email; $("mail").href = "mailto:" + S.email;
@@ -24,16 +22,20 @@
     "</b><p>" + esc(c.note) + "</p><span class='go'>View Instagram ↗</span></a>").join("");
 
   // ---------- media element ----------
-  function media(src, alt) {
-    if (isVid(src)) {
+  function media(it, alt) {
+    if (isVid(it.src)) {
       const v = document.createElement("video");
-      v.src = src + "#t=0.1"; v.muted = true; v.loop = true; v.playsInline = true; v.preload = "metadata";
+      v.src = it.src; v.muted = true; v.loop = true; v.playsInline = true; v.preload = "none";
+      if (it.poster) v.poster = it.poster;
       v.setAttribute("muted", ""); v.setAttribute("playsinline", "");
       return v;
     }
-    const i = new Image(); i.src = src; i.alt = alt || ""; i.loading = "lazy"; i.decoding = "async";
+    const i = new Image(); i.src = it.src; i.alt = alt || ""; i.loading = "lazy"; i.decoding = "async";
     return i;
   }
+  const capHTML = (w) => '<div class="cap">' + (w.title ? "<b>" + esc(w.title) + "</b>" : "") + "<span>" + esc(w.tag) + "</span></div>";
+  const touch = matchMedia("(hover: none)").matches;
+  $("hint").textContent = touch ? "Drag to spin · Tap any tile to open" : "Move your cursor to spin · Click any tile to open";
   const play = (v) => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
   let viewerOpen = false;
 
@@ -47,12 +49,14 @@
     if (isVid(it.src)) {
       m = document.createElement("video");
       m.src = it.src; m.controls = true; m.autoplay = true; m.loop = true; m.playsInline = true;
-    } else { m = new Image(); m.src = it.src; m.alt = cur.title; }
+      if (it.poster) m.poster = it.poster;
+    } else { m = new Image(); m.src = it.src; m.alt = cur.title || cur.tag; }
     stage.append(m);
     if (m.play) play(m);
     const n = cur.items.length;
-    $("vTitle").textContent = cur.title;
+    $("vTitle").textContent = cur.title || "";
     $("vCount").textContent = n > 1 ? idx + 1 + " / " + n : cur.tag;
+    $("vDesc").textContent = cur.desc || "";
     $("vPrev").hidden = $("vNext").hidden = n < 2;
     $("vDots").innerHTML = n > 1 ? cur.items.map((_, i) => '<i data-i="' + i + '"' + (i === idx ? ' class="on"' : "") + "></i>").join("") : "";
   }
@@ -87,10 +91,14 @@
   const grid = $("grid"), cards = [];
   WORK.forEach((w) => {
     const c = document.createElement("button");
-    c.className = "card"; c.dataset.tag = w.tag; c.setAttribute("aria-label", "Open " + w.title);
-    c.append(media(w.items[0].src, w.title));
-    if (w.items.length > 1) c.insertAdjacentHTML("beforeend", '<span class="multi">▣ ' + w.items.length + "</span>");
-    c.insertAdjacentHTML("beforeend", '<div class="cap"><b>' + esc(w.title) + "</b><span>" + esc(w.tag) + "</span></div>");
+    c.className = "card"; c.dataset.tag = w.tag; c.setAttribute("aria-label", "Open " + (w.title || w.tag));
+    const th = document.createElement("div"); th.className = "thumb";
+    th.append(media(w.items[0], w.title));
+    if (w.items.length > 1) th.insertAdjacentHTML("beforeend", '<span class="multi">▣ ' + w.items.length + "</span>");
+    if (isVid(w.items[0].src)) th.insertAdjacentHTML("beforeend", '<span class="playb" aria-hidden="true">▶</span>');
+    c.append(th);
+    c.insertAdjacentHTML("beforeend", '<div class="info"><span class="tag">' + esc(w.tag) + "</span>" +
+      (w.title ? "<b>" + esc(w.title) + "</b>" : "") + (w.desc ? "<p>" + esc(w.desc) + "</p>" : "") + "</div>");
     c.onclick = () => openViewer(w.id, 0);
     grid.append(c); cards.push(c);
   });
@@ -129,15 +137,16 @@
     const t = document.createElement("div"); t.className = "tile";
     const f = document.createElement("div"); f.className = "face";
     const it = e.w.items[e.slide];
-    f.append(media(it.src, e.w.title));
+    f.append(media(it, e.w.title));
     if (e.slide === 0 && e.w.items.length > 1) f.insertAdjacentHTML("beforeend", '<span class="multi">▣ ' + e.w.items.length + "</span>");
-    f.insertAdjacentHTML("beforeend", '<div class="cap"><b>' + esc(e.w.title) + "</b><span>" + esc(e.w.tag) + "</span></div>");
+    f.insertAdjacentHTML("beforeend", capHTML(e.w));
     t.append(f); sphere.append(t);
     t.addEventListener("click", () => { if (drag.moved < 6) openViewer(e.w.id, e.slide); });
     return { t, v: f.querySelector("video"), lat, th, n: [Math.cos(lat) * Math.sin(th), -Math.sin(lat), Math.cos(lat) * Math.cos(th)], playing: false, z: 0 };
   });
 
   const MAXP = innerWidth < 640 ? 4 : 7;
+  const CY = 0.46; // sphere centre, as a fraction of hero height (matches .sphere top in CSS)
   // rotation state
   let rx = -8, ry = 0, vy = 10, tvy = 10, trx = -8;
   const drag = { on: false, moved: 0, x: 0, y: 0, t: 0 };
@@ -145,7 +154,7 @@
 
   function layout() {
     const r = hero.getBoundingClientRect(); W = r.width; H = r.height;
-    R = Math.max(120, Math.min(W * 0.34, H * 0.31, 300));
+    R = Math.max(110, Math.min(W * (W < 640 ? 0.37 : 0.3), H * 0.27, 290));
     const area = (4 * Math.PI * R * R * 0.92) / N, tw = Math.sqrt(area / 1.33), th = tw * 1.33;
     tiles.forEach((o) => {
       const s = o.t.style;
@@ -183,7 +192,7 @@
   function drawNet(front, a, b) {
     const ctx = $(front ? "netFront" : "netBack").getContext("2d");
     ctx.clearRect(0, 0, W, H);
-    const cx = W / 2, cy = H / 2, pr = pts.map((o) => {
+    const cx = W / 2, cy = H * CY, pr = pts.map((o) => {
       const [x, y, z] = rot(o.p[0], o.p[1], o.p[2], a, b), k = P / (P - z);
       return { x: cx + x * k, y: cy + y * k, z, k, warm: o.warm };
     });
