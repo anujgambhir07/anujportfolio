@@ -4,7 +4,9 @@
 window.SITE = {
   name: "Anuj Gambhir",
   role: "Graphic Designer & Video Editor",
-  tagline: "Explore the creative universe",
+  // wrap a word in *stars* to set it in italics
+  tagline: "Design and edits that make brands *remembered*.",
+  lede: "Posters, social creatives, reels and motion graphics for clubs, events and creators.",
   about:
     "I design and edit visual content for brands, clubs and creators. From posters and social creatives to short-form video, VFX and motion graphics, I turn ideas into work that gets noticed.",
   tools: ["Photoshop", "CorelDRAW", "Premiere Pro", "After Effects"],
