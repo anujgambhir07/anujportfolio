@@ -167,7 +167,7 @@
   let rx = -8, ry = 0, vy = 8, tvy = 8, trx = -8, mouseIn = false;
   function layout() {
     const r = visual.getBoundingClientRect();
-    const R = Math.max(110, Math.min(r.width * 0.36, r.height * 0.36, 280));
+    const R = Math.max(130, Math.min(r.width * 0.42, r.height * 0.43, 360));
     const tw = Math.sqrt((4 * Math.PI * R * R * 0.88) / N / 1.3), th = tw * 1.3;
     tiles.forEach((o) => {
       const s = o.t.style;
